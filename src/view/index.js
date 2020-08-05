@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {PermissionsAndroid, StatusBar} from 'react-native';
+import {PermissionsAndroid, StatusBar, ScrollView, Image} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 
 import api from '../services/weatherApi';
@@ -44,10 +44,12 @@ export default class App extends Component{
     };
 
     refreshLocation(){
-        Geolocation.getCurrentPosition(location => this.refreshWeather(location));
+        try{
+            Geolocation.getCurrentPosition(location => this.refreshWeather(location));
+        }catch(err){
+            console.log(err);
+        }
     }
-
-    
 
     async requestLocationPermission(){
         try{
@@ -66,7 +68,7 @@ export default class App extends Component{
 
     async refreshWeatherByCityName(cityName){
         try{
-            const response = await api.get(`/weather?q=${cityName}&lang=pt_br&appid=dfa9dceaeb9c36a193b24efaa4e27a76`);
+            const response = await api.get(`/weather?q=${cityName}&lang=pt_br&appid=ad8dbb008061c49628217468c674d26c`);
 
             const parsedResponse = JSON.parse(response.request._response);
 
@@ -98,11 +100,9 @@ export default class App extends Component{
 
     async refreshWeather(location){
         try{
-            const response = await api.get(`/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&lang=pt_br&appid=dfa9dceaeb9c36a193b24efaa4e27a76`);
+            const response = await api.get(`/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&lang=pt_br&appid=ad8dbb008061c49628217468c674d26c`);
 
             const parsedResponse = JSON.parse(response.request._response);
-
-            console.log(parsedResponse);
 
             this.setState({
                 weather: {
@@ -125,7 +125,8 @@ export default class App extends Component{
                 },
             });
         }catch(err){
-            console.log(err);
+
+            console.log(String(err));
         }
     }
 
@@ -136,6 +137,9 @@ export default class App extends Component{
     render(){
         return(
             <Container>
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                >
                 <StatusBar backgroundColor="transparent" translucent barStyle="light-content" />
                 <LocationContainer>
                     <Location>
@@ -148,6 +152,7 @@ export default class App extends Component{
                         <Icon name="refresh" size={40} color="#fff"/>
                     </Refresh>
                 </LocationContainer>
+
 
                 <WeatherInfo info={this.state} />
 
@@ -167,13 +172,17 @@ export default class App extends Component{
                         <Icon name="location" size={40} color="#fff"/>
                         <FastTestText>Paris</FastTestText>
                     </FastTest>
+                    <FastTest onPress={() => {this.refreshWeatherByCityName('São Paulo')}}>
+                        <Icon name="location" size={40} color="#fff"/>
+                        <FastTestText>São Paulo</FastTestText>
+                    </FastTest>
                     <FastTest onPress={() => {this.refreshWeatherByCityName('Tokyo')}}>
                         <Icon name="location" size={40} color="#fff"/>
-                        <FastTestText>Tokyo</FastTestText>
+                        <FastTestText>Tóquio</FastTestText>
                     </FastTest>
                     
                 </TestsContainer>
-
+                </ScrollView>
             </Container>
         );
     }
