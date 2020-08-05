@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
-
-import { PermissionsAndroid, StatusBar, Image } from 'react-native';
-
+import {PermissionsAndroid, StatusBar, ScrollView, Image} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 
 import api from '../services/weatherApi';
 
+import WeatherInfo from '../components/WeatherInfo';
+
 import Icon from 'react-native-vector-icons/EvilIcons';
-import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
     Container,
@@ -16,11 +15,8 @@ import {
     City,
     CityName,
     Refresh,
-    WeatherContainer,
+    TestsContainer,
     Title,
-    Ambient,
-    SmallCard,
-    SmallCardDescription,
     FastTest,
     FastTestText,
 } from './styles';
@@ -48,10 +44,12 @@ export default class App extends Component{
     };
 
     refreshLocation(){
-        Geolocation.getCurrentPosition(location => this.refreshWeather(location));
+        try{
+            Geolocation.getCurrentPosition(location => this.refreshWeather(location));
+        }catch(err){
+            console.log(err);
+        }
     }
-
-    
 
     async requestLocationPermission(){
         try{
@@ -70,11 +68,9 @@ export default class App extends Component{
 
     async refreshWeatherByCityName(cityName){
         try{
-            const response = await api.get(`/weather?q=${cityName}&lang=pt_br&appid=dfa9dceaeb9c36a193b24efaa4e27a76`);
+            const response = await api.get(`/weather?q=${cityName}&lang=pt_br&appid=ad8dbb008061c49628217468c674d26c`);
 
             const parsedResponse = JSON.parse(response.request._response);
-
-            console.log(parsedResponse);
 
             this.setState({
                 weather: {
@@ -104,11 +100,9 @@ export default class App extends Component{
 
     async refreshWeather(location){
         try{
-            const response = await api.get(`/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&lang=pt_br&appid=dfa9dceaeb9c36a193b24efaa4e27a76`);
+            const response = await api.get(`/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&lang=pt_br&appid=ad8dbb008061c49628217468c674d26c`);
 
             const parsedResponse = JSON.parse(response.request._response);
-
-            console.log(parsedResponse);
 
             this.setState({
                 weather: {
@@ -131,7 +125,8 @@ export default class App extends Component{
                 },
             });
         }catch(err){
-            console.log(err);
+
+            console.log(String(err));
         }
     }
 
@@ -142,6 +137,9 @@ export default class App extends Component{
     render(){
         return(
             <Container>
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                >
                 <StatusBar backgroundColor="transparent" translucent barStyle="light-content" />
                 <LocationContainer>
                     <Location>
@@ -154,37 +152,11 @@ export default class App extends Component{
                         <Icon name="refresh" size={40} color="#fff"/>
                     </Refresh>
                 </LocationContainer>
-                <WeatherContainer>
-                    <Title>{this.state.weather.dayWeather.description}</Title>
-                    <Ambient>
-                        <SmallCard>
-                            <MaterialIcon name="thermometer-chevron-down" size={30} color="#fff" />
-                            <SmallCardDescription>{Math.round(this.state.weather.ambient.temp_min - 273.15)}°C</SmallCardDescription>
-                        </SmallCard>
-                        <SmallCard>
-                            <MaterialIcon name="thermometer" size={30} color="#fff" />
-                            <SmallCardDescription>{Math.round(this.state.weather.ambient.temp - 273.15)} °C</SmallCardDescription>
-                        </SmallCard>
-                        <SmallCard>
-                            <MaterialIcon name="thermometer-chevron-up" size={30} color="#fff" />
-                            <SmallCardDescription>{Math.round(this.state.weather.ambient.temp_max - 273.15)} °C</SmallCardDescription>
-                        </SmallCard>
-                        <SmallCard>
-                            <MaterialIcon name="water-outline" size={30} color="#fff" />
-                            <SmallCardDescription>{this.state.weather.ambient.humidity}%</SmallCardDescription>
-                        </SmallCard>
-                        <SmallCard>
-                            <MaterialIcon name="human-handsdown" size={30} color="#fff" />
-                            <SmallCardDescription>{Math.round(this.state.weather.ambient.feels_like - 273.15)} °C</SmallCardDescription>
-                        </SmallCard>
-                        <SmallCard>
-                            <MaterialIcon name="weather-windy" size={30} color="#fff" />
-                            <SmallCardDescription>{Math.round(this.state.weather.ambient.wind_speed * 1.609)} Km/h</SmallCardDescription>
-                        </SmallCard>
-                    </Ambient>
-                </WeatherContainer>
 
-                <WeatherContainer>
+
+                <WeatherInfo info={this.state} />
+
+                <TestsContainer>
 
                     <Title>Testes rápidos</Title>
 
@@ -200,13 +172,17 @@ export default class App extends Component{
                         <Icon name="location" size={40} color="#fff"/>
                         <FastTestText>Paris</FastTestText>
                     </FastTest>
+                    <FastTest onPress={() => {this.refreshWeatherByCityName('São Paulo')}}>
+                        <Icon name="location" size={40} color="#fff"/>
+                        <FastTestText>São Paulo</FastTestText>
+                    </FastTest>
                     <FastTest onPress={() => {this.refreshWeatherByCityName('Tokyo')}}>
                         <Icon name="location" size={40} color="#fff"/>
-                        <FastTestText>Tokyo</FastTestText>
+                        <FastTestText>Tóquio</FastTestText>
                     </FastTest>
                     
-                </WeatherContainer>
-
+                </TestsContainer>
+                </ScrollView>
             </Container>
         );
     }

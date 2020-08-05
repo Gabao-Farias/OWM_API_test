@@ -35,7 +35,7 @@ export const CityName = styled.Text`
 
 export const Refresh = styled.TouchableOpacity``;
 
-export const WeatherContainer = styled.View`
+export const TestsContainer = styled.View`
     margin-top: 20px;
     border: 2px solid #fff;
     border-radius: 30px;
