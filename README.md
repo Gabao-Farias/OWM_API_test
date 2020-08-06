@@ -55,7 +55,7 @@ Esse é um projeto serve para demonstração e teste da API do OpenWeather.
 Se você nunca lidou com algum projeto em React Native antes, deves configurar seu ambiente antes para executá-lo. Caso já tenha configurado, pode começar a partir do [Clone](#-clone).
 
 #### Ambiente
-Nesse [artigo](https://medium.com/@guilherme_andrade2/instala%C3%A7%C3%A3o-react-native-cli-em-windows-f6c5b59a29cb) é mostrado como instalar o React Native, Node, Python2, jdk, AndroidStudio (se quiser emular virtualmente) e, sim, é bastante coisa, mas não se preocupe, pois os passos são bem simples, ou, se achar um vídeo mais conveniente, eu particularmente sugiro [esse](https://www.youtube.com/watch?v=pqHMvj5_Xs0).
+Nesse [artigo](https://medium.com/@guilherme_andrade2/instala%C3%A7%C3%A3o-react-native-cli-em-windows-f6c5b59a29cb) é mostrado como instalar o React Native, Node, Python2, jdk, AndroidStudio e, sim, é bastante coisa, mas não se preocupe, pois os passos são bem simples, ou, se achar um vídeo mais conveniente, eu particularmente sugiro [esse](https://www.youtube.com/watch?v=pqHMvj5_Xs0).
 
 #### Clone
 Com o ambiente já preparado, faça o clone do repositório.
