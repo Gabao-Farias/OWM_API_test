@@ -106,7 +106,7 @@ Para rodar no dispositivo físico, basta habilitar o **modo desenvolvedor** do s
 
 Feito com :heart:
 
-<a href="">
+<a href="https://www.linkedin.com/in/gabriel-taborda-farias-26b9b8160/">
   <img src="https://img.shields.io/badge/-Gabriel Taborda Farias-0077b5?style=flat&labelColor=0077b5&logo=linkedin&logoColor=white"/>
 </a>
 
