@@ -49,10 +49,9 @@ export default class App extends Component{
 
     refreshLocation(){
         try{
-            this.requestLocationPermission();
             Geolocation.getCurrentPosition(location => this.refreshWeather(location));
         }catch(err){
-            
+            Alert.alert("Erro!", "Problema ao encontrar localização!");
         }
     }
 
@@ -68,13 +67,13 @@ export default class App extends Component{
                 this.refreshWeatherByCityName("Los Angeles");
             }
         }catch(err){
-            console.log(err);
+            Alert.alert("Erro!", "Problema na autorização da localização!");
         }
     }
 
     async refreshWeatherByCityName(cityName){
         try{
-            const response = await api.get(`/weather?q=${cityName}&lang=pt_br&appid=ad8dbb008061c49628217468c674d26c`);
+            const response = await api.get(`/weather?q=${cityName}&lang=pt_br&appid=dfa9dceaeb9c36a193b24efaa4e27a76`);
 
             const parsedResponse = JSON.parse(response.request._response);
 
@@ -99,17 +98,17 @@ export default class App extends Component{
                 },
             });
         }catch(err){
-            console.log(String(err));
             if(String(err) === "Error: Network Error"){
-                Alert.alert("Sem internet!", "Não foi possível recarregar os dados!");
+                Alert.alert("Erro ao atualizar!", "Sem internet!");
+            }else{
+                Alert.alert("Erro ao atualizar!", "Não foi possível recarregar os dados! " + err);
             }
         }
-
     }
 
     async refreshWeather(location){
         try{
-            const response = await api.get(`/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&lang=pt_br&appid=ad8dbb008061c49628217468c674d26c`);
+            const response = await api.get(`/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&lang=pt_br&appid=dfa9dceaeb9c36a193b24efaa4e27a76`);
 
             const parsedResponse = JSON.parse(response.request._response);
 
@@ -127,15 +126,18 @@ export default class App extends Component{
                         description: parsedResponse.weather[0].description.charAt(0).toUpperCase() + parsedResponse.weather[0].description.slice(1),
                         icon: parsedResponse.weather[0].icon,
                         main: parsedResponse.weather[0].main,
-                    }
+                    },
                 },
                 location: {
                     cityName: parsedResponse.name,
                 },
             });
         }catch(err){
-
-            console.log(String(err));
+            if(String(err) === "Error: Network Error"){
+                Alert.alert("Erro ao atualizar!", "Sem internet!");
+            }else{
+                Alert.alert("Erro ao atualizar!", "Não foi possível recarregar os dados! " + err);
+            }
         }
     }
 
