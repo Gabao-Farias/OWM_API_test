@@ -24,7 +24,7 @@
 * [Capturas de tela](#%EF%B8%8F-capturas-de-tela)
 * [Funcionalidades](#-funcionalidades)
 * [Tecnologias e ferramentas envolvidas](#%EF%B8%8F-tecnologias-e-ferramentas-envolvidas)
-* [Como instalar?](#-como-instalar?)
+* [Como instalar?](#-como-instalar)
 
 ### ℹ️ Sobre
 Esse é um projeto serve para demonstrar e testar a API do OpenWeather.
