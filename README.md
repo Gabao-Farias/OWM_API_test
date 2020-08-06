@@ -20,22 +20,22 @@
 </h1>
 
 ## Sumário
-* [Sobre](#ℹ%EF%B8%8F-about)
-* [Capturas de tela](#%EF%B8%8F-screenshots)
-* [Funcionalidades](#-features)
+* [Sobre](#ℹ%EF%B8%8F-sobre)
+* [Capturas de tela](#%EF%B8%8F-capturas-de-tela)
+* [Funcionalidades](#-funcionalidades)
 * [Tecnologias e ferramentas envolvidas](#%EF%B8%8F-tecnologias-e-ferramentas-envolvidas)
-* [Como instalar?](🚀 Como instalar?)
+* [Como instalar?](#-como-instalar?)
 
-### ℹ️ About
+### ℹ️ Sobre
 Esse é um projeto serve para demonstrar e testar a API do OpenWeather.
 
-### 🖼️ Screenshots
+### 🖼️ Capturas de tela
 <h1>
  <img height="500" src="src\assets\Screenshot_20200806-015006_OWM_API_test.jpg">
  <img height="500" src="src\assets\Screenshot_20200806-015017_OWM_API_test.jpg">
 </h1>
 
-### 🥏 Features
+### 🥏 Funcionalidades
 * Podes fazer consultas rápidas preestabelecidas sem habilitar a própria localização.
 * O botão de atualizar, busca a localização atual do dispositivo (se autorizado...).
 * ⚠️ O ícone de condição climática pode não ser exibido para dispositivos IOS.
