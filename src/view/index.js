@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {PermissionsAndroid, StatusBar, ScrollView, Image} from 'react-native';
+import {PermissionsAndroid, StatusBar, ScrollView, Alert} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 
 import api from '../services/weatherApi';
@@ -25,11 +25,11 @@ export default class App extends Component{
     state = {
         weather: {
             ambient: {
-                feels_like: 0,
+                feels_like: 273,
                 humidity: 0,
-                temp: 0,
-                temp_max: 0,
-                temp_min: 0,
+                temp: 273,
+                temp_max: 273,
+                temp_min: 273,
                 wind_speed: 0,
             },
             dayWeather: {
@@ -39,15 +39,20 @@ export default class App extends Component{
             },
         },
         location: {
-            cityName: 'London',
+            cityName: '',
+        },
+        error: {
+            errorState: false,
+            errorMessage:'',
         },
     };
 
     refreshLocation(){
         try{
+            this.requestLocationPermission();
             Geolocation.getCurrentPosition(location => this.refreshWeather(location));
         }catch(err){
-            console.log(err);
+            
         }
     }
 
@@ -59,7 +64,8 @@ export default class App extends Component{
             if(granted === PermissionsAndroid.RESULTS.GRANTED){
                 this.refreshLocation();
             }else{
-                console.log("Location permission denied");
+                Alert.alert("Permissão negada!","Serão habilitados apenas os testes rápidos ao invés da sua localização atual. Para autorizar permissão, atualize.");
+                this.refreshWeatherByCityName("Los Angeles");
             }
         }catch(err){
             console.log(err);
@@ -93,7 +99,10 @@ export default class App extends Component{
                 },
             });
         }catch(err){
-            console.log(err);
+            console.log(String(err));
+            if(String(err) === "Error: Network Error"){
+                Alert.alert("Sem internet!", "Não foi possível recarregar os dados!");
+            }
         }
 
     }
