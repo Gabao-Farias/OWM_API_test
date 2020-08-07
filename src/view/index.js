@@ -14,6 +14,8 @@ import {
     Location,
     City,
     CityName,
+    Options,
+    Search,
     Refresh,
     TestsContainer,
     Title,
@@ -40,6 +42,7 @@ export default class App extends Component{
         },
         location: {
             cityName: '',
+            cityNameInput: '',
         },
         error: {
             errorState: false,
@@ -72,37 +75,46 @@ export default class App extends Component{
     }
 
     async refreshWeatherByCityName(cityName){
-        try{
-            const response = await api.get(`/weather?q=${cityName}&lang=pt_br&appid=dfa9dceaeb9c36a193b24efaa4e27a76`);
+        if(cityName != ""){
+            try{
+                const response = await api.get(`/weather?q=${cityName}&lang=pt_br&appid=dfa9dceaeb9c36a193b24efaa4e27a76`);
 
-            const parsedResponse = JSON.parse(response.request._response);
+                const parsedResponse = JSON.parse(response.request._response);
 
-            this.setState({
-                weather: {
-                    ambient: {
-                        feels_like: parsedResponse.main.feels_like,
-                        humidity: parsedResponse.main.humidity,
-                        temp: parsedResponse.main.temp,
-                        temp_max: parsedResponse.main.temp_max,
-                        temp_min: parsedResponse.main.temp_min,
-                        wind_speed: parsedResponse.wind.speed,
+                this.setState({
+                    weather: {
+                        ambient: {
+                            feels_like: parsedResponse.main.feels_like,
+                            humidity: parsedResponse.main.humidity,
+                            temp: parsedResponse.main.temp,
+                            temp_max: parsedResponse.main.temp_max,
+                            temp_min: parsedResponse.main.temp_min,
+                            wind_speed: parsedResponse.wind.speed,
+                        },
+                        dayWeather: {
+                            description: parsedResponse.weather[0].description.charAt(0).toUpperCase() + parsedResponse.weather[0].description.slice(1),
+                            icon: parsedResponse.weather[0].icon,
+                            main: parsedResponse.weather[0].main,
+                        }
                     },
-                    dayWeather: {
-                        description: parsedResponse.weather[0].description.charAt(0).toUpperCase() + parsedResponse.weather[0].description.slice(1),
-                        icon: parsedResponse.weather[0].icon,
-                        main: parsedResponse.weather[0].main,
+                    location: {
+                        cityName: parsedResponse.name,
+                        cityNameInput: parsedResponse.name,
+                    },
+                });
+            }catch(err){
+                if(String(err) === "Error: Network Error"){
+                    Alert.alert("Erro ao atualizar!", "Sem internet!");
+                }else{
+                    if(String(err) === "Error: Request failed with status code 404"){
+                        Alert.alert("Erro ao atualizar!", "Cidade não encontrada!");
+                    }else{
+                        Alert.alert("Erro ao atualizar!", "Não foi possível recarregar os dados! " + err);
                     }
-                },
-                location: {
-                    cityName: parsedResponse.name,
-                },
-            });
-        }catch(err){
-            if(String(err) === "Error: Network Error"){
-                Alert.alert("Erro ao atualizar!", "Sem internet!");
-            }else{
-                Alert.alert("Erro ao atualizar!", "Não foi possível recarregar os dados! " + err);
+                }
             }
+        }else{
+            Alert.alert("Erro ao atualizar!", "Campo vazio!");
         }
     }
 
@@ -130,6 +142,7 @@ export default class App extends Component{
                 },
                 location: {
                     cityName: parsedResponse.name,
+                    cityNameInput: parsedResponse.name,
                 },
             });
         }catch(err){
@@ -156,14 +169,22 @@ export default class App extends Component{
                     <Location>
                         <Icon name="location" size={40} color="#fff"/>
                         <City>
-                            <CityName>{this.state.location.cityName}</CityName>
+                            <CityName
+                                value={this.state.location.cityNameInput}
+                                onChangeText={(text) => {this.setState({location: {cityNameInput: text}})}}
+                                autoCapitalize="words"
+                            />
                         </City>
                     </Location>
-                    <Refresh onPress={() => {this.refreshLocation()}}>
-                        <Icon name="refresh" size={40} color="#fff"/>
-                    </Refresh>
+                    <Options>
+                        <Search onPress={() => {this.refreshWeatherByCityName(this.state.location.cityNameInput)}}>
+                            <Icon name="search" size={40} color="#fff"/>
+                        </Search>
+                        <Refresh onPress={() => {this.refreshLocation()}}>
+                            <Icon name="refresh" size={40} color="#fff"/>
+                        </Refresh>
+                    </Options>
                 </LocationContainer>
-
 
                 <WeatherInfo info={this.state} />
 

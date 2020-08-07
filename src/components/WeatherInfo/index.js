@@ -6,6 +6,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
     WeatherContainer,
+    CityName,
     Title,
     Ambient,
     SmallCard,
@@ -17,6 +18,7 @@ import {
 export default function WeatherInfo({info}){
     return(
         <WeatherContainer>
+            <CityName>{info.location.cityName}</CityName>
             <Title>{info.weather.dayWeather.description}</Title>
 
             <WeatherImage>
