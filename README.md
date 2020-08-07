@@ -35,8 +35,8 @@ Esse é um projeto serve para demonstração e teste da API do OpenWeather.
 
 ### 🖼️ Capturas de tela
 <h1>
- <img height="500" src="src\assets\Screenshot_20200806-015006_OWM_API_test.jpg">
- <img height="500" src="src\assets\Screenshot_20200806-015017_OWM_API_test.jpg">
+ <img height="500" src="src\assets\Screenshot_20200807-192009_OWM_API_test.jpg">
+ <img height="500" src="src\assets\Screenshot_20200807-192152_OWM_API_test.jpg">
 </h1>
 
 ### 🥏 Funcionalidades
@@ -46,7 +46,7 @@ Esse é um projeto serve para demonstração e teste da API do OpenWeather.
   ![](http://openweathermap.org/img/wn/10d@2x.png)
   * Essa imagem provém dessa [URL http](http://openweathermap.org/img/wn/10d@2x.png), porém, por motivos de segurança, IOS só se conecta com requisições https. Veja mais sobre, em https://github.com/facebook/react-native/issues/8520.
 * Consulta de previsão de tempo (🚧 em pesquisa e desenvolvimento...).
-* Consulta por digitação da cidade (🚧 em pesquisa e desenvolvimento...).
+* Consulta por digitação da cidade.
 
 ### ⚙️ Tecnologias e ferramentas utilizadas
 * [React Native](https://reactnative.dev/).
