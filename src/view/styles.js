@@ -21,17 +21,25 @@ export const LocationContainer = styled.View`
 
 export const Location = styled.View`
     flex-direction: row;
+    align-items: center;
 `;
 
 export const City = styled.View`
-    padding: 5px;
+    padding: 2px;
     border-radius: 10px;
 `;
 
-export const CityName = styled.Text`
+export const CityName = styled.TextInput`
     color: #fff;
-    font-size: 16px;
+    font-size: 20px;
 `;
+
+export const Options = styled.View`
+    flex-direction: row;
+    align-items: center;
+`;
+
+export const Search = styled.TouchableOpacity``;
 
 export const Refresh = styled.TouchableOpacity``;
 
@@ -46,31 +54,6 @@ export const Title = styled.Text`
     color: #fff;
     font-size: 26px;
     text-align: center;
-`;
-
-export const Ambient = styled.View`
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    border: 2px solid #fff;
-    border-radius: 20px;
-    padding: 10px;
-    margin-top: 10px;
-`;
-
-export const SmallCard = styled.View`
-    padding: 5px;
-    align-items: center;
-    border: 2px solid #fff;
-    border-radius: 10px;
-    width: 70px;
-    height: 70px;
-    margin: 10px;
-`;
-
-export const SmallCardDescription = styled.Text`
-    color: #fff;
-    font-size: 14px;
 `;
 
 export const FastTest = styled.TouchableOpacity`
