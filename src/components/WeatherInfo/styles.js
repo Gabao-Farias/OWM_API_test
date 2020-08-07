@@ -8,14 +8,21 @@ export const WeatherContainer = styled.View`
     padding: 10px;
 `;
 
+export const CityName = styled.Text`
+    color: #fff;
+    font-size: 28px;
+    text-align: center;
+`;
+
 export const Title = styled.Text`
     color: #fff;
-    font-size: 26px;
+    font-size: 24px;
     text-align: center;
 `;
 
 export const WeatherImage = styled.View`
     align-self: center;
+    margin: -10px;
 `;
 
 export const Ambient = styled.View`
