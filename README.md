@@ -16,6 +16,7 @@
 <h1 align="center">
  <img src="https://img.shields.io/badge/License-MIT-%23A214D0">
  <img src="https://img.shields.io/github/last-commit/Gabao-Farias/OWM_API_test">
+ <img src="https://img.shields.io/github/issues/Gabao-Farias/OWM_API_test">
 </h1>
 
 ## Sumário
