@@ -43,7 +43,11 @@ Esse é um projeto serve para demonstração e teste da API do OpenWeather.
 * Podes fazer consultas rápidas preestabelecidas sem habilitar a própria localização.
 * O botão de atualizar, busca a localização atual do dispositivo (se autorizado...).
 * ⚠️ O ícone de condição climática pode não ser exibido para dispositivos IOS.
-  ![](http://openweathermap.org/img/wn/10d@2x.png)
+
+<p align="center">
+  <img src="http://openweathermap.org/img/wn/10d@2x.png" />
+<p/>
+
   * Essa imagem provém dessa [URL http](http://openweathermap.org/img/wn/10d@2x.png), porém, por motivos de segurança, IOS só se conecta com requisições https. Veja mais sobre, em https://github.com/facebook/react-native/issues/8520.
 * Consulta de previsão de tempo (🚧 em pesquisa e desenvolvimento...).
 * Consulta por digitação da cidade.
