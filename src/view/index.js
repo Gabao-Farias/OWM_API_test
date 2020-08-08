@@ -44,10 +44,6 @@ export default class App extends Component{
             cityName: '',
             cityNameInput: '',
         },
-        error: {
-            errorState: false,
-            errorMessage:'',
-        },
     };
 
     refreshLocation(){
@@ -171,7 +167,12 @@ export default class App extends Component{
                         <City>
                             <CityName
                                 value={this.state.location.cityNameInput}
-                                onChangeText={(text) => {this.setState({location: {cityNameInput: text}})}}
+                                onChangeText={(text) => {this.setState(
+                                    {location: {
+                                        cityNameInput: text,
+                                        cityName: this.state.location.cityName,
+                                    },
+                                })}}
                                 autoCapitalize="words"
                             />
                         </City>
