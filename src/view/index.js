@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {PermissionsAndroid, StatusBar, ScrollView, Alert} from 'react-native';
+import {PermissionsAndroid, StatusBar, Alert} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 
 import api from '../services/weatherApi';
@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/EvilIcons';
 
 import {
     Container,
+    ScrollContainer,
     LocationContainer,
     Location,
     City,
@@ -22,6 +23,7 @@ import {
     FastTest,
     FastTestText,
 } from './styles';
+import Forecast from '../components/Forecast';
 
 export default class App extends Component{
     state = {
@@ -157,7 +159,7 @@ export default class App extends Component{
     render(){
         return(
             <Container>
-                <ScrollView
+                <ScrollContainer
                     showsVerticalScrollIndicator={false}
                 >
                 <StatusBar backgroundColor="transparent" translucent barStyle="light-content" />
@@ -189,6 +191,8 @@ export default class App extends Component{
 
                 <WeatherInfo info={this.state} />
 
+                <Forecast />
+
                 <TestsContainer>
 
                     <Title>Testes rápidos</Title>
@@ -215,7 +219,7 @@ export default class App extends Component{
                     </FastTest>
                     
                 </TestsContainer>
-                </ScrollView>
+                </ScrollContainer>
             </Container>
         );
     }
