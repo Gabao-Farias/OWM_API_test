@@ -120,7 +120,7 @@ export default class App extends Component{
         try{
             const response = await api.get(`/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&lang=pt_br&appid=dfa9dceaeb9c36a193b24efaa4e27a76`);
 
-            const parsedResponse = JSON.parse(response.request._response);
+            const parsedResponse = response.data;
 
             this.setState({
                 weather: {
