@@ -29,11 +29,11 @@ export default class App extends Component{
     state = {
         weather: {
             ambient: {
-                feels_like: 273,
+                feels_like: 0,
                 humidity: 0,
-                temp: 273,
-                temp_max: 273,
-                temp_min: 273,
+                temp: 0,
+                temp_max: 0,
+                temp_min: 0,
                 wind_speed: 0,
             },
             dayWeather: {
@@ -41,11 +41,12 @@ export default class App extends Component{
                 icon: '',
                 main: '',
             },
+            location: {
+                cityName: '',
+                cityNameInput: '',
+            },
         },
-        location: {
-            cityName: '',
-            cityNameInput: '',
-        },
+        forecast: [],
     };
 
     refreshLocation(){
@@ -75,9 +76,11 @@ export default class App extends Component{
     async refreshWeatherByCityName(cityName){
         if(cityName != ""){
             try{
-                const response = await api.get(`/weather?q=${cityName}&lang=pt_br&appid=dfa9dceaeb9c36a193b24efaa4e27a76`);
+                const response = await api.get(`/weather?q=${cityName}&units=metric&lang=pt_br&appid=dfa9dceaeb9c36a193b24efaa4e27a76`);
+                const forecastResponse = await api.get(`/forecast?q=${cityName}&units=metric&lang=pt_br&appid=dfa9dceaeb9c36a193b24efaa4e27a76`);
 
-                const parsedResponse = JSON.parse(response.request._response);
+                const parsedResponse = response.data;
+                const parsedForecastResponse = forecastResponse.data;
 
                 this.setState({
                     weather: {
@@ -93,12 +96,13 @@ export default class App extends Component{
                             description: parsedResponse.weather[0].description.charAt(0).toUpperCase() + parsedResponse.weather[0].description.slice(1),
                             icon: parsedResponse.weather[0].icon,
                             main: parsedResponse.weather[0].main,
-                        }
+                        },
+                        location: {
+                            cityName: parsedResponse.name,
+                            cityNameInput: parsedResponse.name,
+                        },
                     },
-                    location: {
-                        cityName: parsedResponse.name,
-                        cityNameInput: parsedResponse.name,
-                    },
+                    forecast: parsedForecastResponse,
                 });
             }catch(err){
                 if(String(err) === "Error: Network Error"){
@@ -118,9 +122,11 @@ export default class App extends Component{
 
     async refreshWeather(location){
         try{
-            const response = await api.get(`/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&lang=pt_br&appid=dfa9dceaeb9c36a193b24efaa4e27a76`);
+            const response = await api.get(`/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&units=metric&lang=pt_br&appid=dfa9dceaeb9c36a193b24efaa4e27a76`);
+            const forecastResponse = await api.get(`/forecast?lat=${location.coords.latitude}&lon=${location.coords.longitude}&units=metric&lang=pt_br&appid=dfa9dceaeb9c36a193b24efaa4e27a76`);
 
             const parsedResponse = response.data;
+            const parsedForecastResponse = forecastResponse.data;
 
             this.setState({
                 weather: {
@@ -137,11 +143,12 @@ export default class App extends Component{
                         icon: parsedResponse.weather[0].icon,
                         main: parsedResponse.weather[0].main,
                     },
+                    location: {
+                        cityName: parsedResponse.name,
+                        cityNameInput: parsedResponse.name,
+                    },
                 },
-                location: {
-                    cityName: parsedResponse.name,
-                    cityNameInput: parsedResponse.name,
-                },
+                forecast: parsedForecastResponse.list,
             });
         }catch(err){
             if(String(err) === "Error: Network Error"){
@@ -168,11 +175,13 @@ export default class App extends Component{
                         <Icon name="location" size={40} color="#fff"/>
                         <City>
                             <CityName
-                                value={this.state.location.cityNameInput}
+                                value={this.state.weather.location.cityNameInput}
                                 onChangeText={(text) => {this.setState(
-                                    {location: {
-                                        cityNameInput: text,
-                                        cityName: this.state.location.cityName,
+                                    {weather: {
+                                        location: {
+                                            cityNameInput: text,
+                                            cityName: this.state.weather.location.cityName,
+                                        },
                                     },
                                 })}}
                                 autoCapitalize="words"
@@ -180,7 +189,7 @@ export default class App extends Component{
                         </City>
                     </Location>
                     <Options>
-                        <Search onPress={() => {this.refreshWeatherByCityName(this.state.location.cityNameInput)}}>
+                        <Search onPress={() => {this.refreshWeatherByCityName(this.state.weather.location.cityNameInput)}}>
                             <Icon name="search" size={40} color="#fff"/>
                         </Search>
                         <Refresh onPress={() => {this.refreshLocation()}}>
@@ -191,7 +200,7 @@ export default class App extends Component{
 
                 <WeatherInfo info={this.state} />
 
-                <Forecast />
+                <Forecast forecast={this.state.forecast} />
 
                 <TestsContainer>
 
