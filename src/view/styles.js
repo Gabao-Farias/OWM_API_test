@@ -11,9 +11,11 @@ export const Container = styled(LinearGradient).attrs({
 
 export const ScrollContainer = styled.ScrollView.attrs({
     showsVerticalScrollIndicator: false,
-})`
+})``;
+
+export const ContentContainer = styled.View`
+    margin-top: 20px;
     padding: 20px;
-    padding-top: 45px;
 `;
 
 export const LocationContainer = styled.View`

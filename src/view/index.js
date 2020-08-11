@@ -22,6 +22,7 @@ import {
     Title,
     FastTest,
     FastTestText,
+    ContentContainer,
 } from './styles';
 import Forecast from '../components/Forecast';
 
@@ -102,7 +103,7 @@ export default class App extends Component{
                             cityNameInput: parsedResponse.name,
                         },
                     },
-                    forecast: parsedForecastResponse,
+                    forecast: parsedForecastResponse.list,
                 });
             }catch(err){
                 if(String(err) === "Error: Network Error"){
@@ -165,71 +166,86 @@ export default class App extends Component{
 
     render(){
         return(
-            <Container>
-                <ScrollContainer
+        <Container>
+            <ScrollContainer
                     showsVerticalScrollIndicator={false}
-                >
-                <StatusBar backgroundColor="transparent" translucent barStyle="light-content" />
-                <LocationContainer>
-                    <Location>
-                        <Icon name="location" size={40} color="#fff"/>
-                        <City>
-                            <CityName
-                                value={this.state.weather.location.cityNameInput}
-                                onChangeText={(text) => {this.setState(
-                                    {weather: {
-                                        location: {
-                                            cityNameInput: text,
-                                            cityName: this.state.weather.location.cityName,
+            >
+                <ContentContainer>
+                    <StatusBar backgroundColor="transparent" translucent barStyle="light-content" />
+                    <LocationContainer>
+                        <Location>
+                            <Icon name="location" size={40} color="#fff"/>
+                            <City>
+                                <CityName
+                                    value={this.state.weather.location.cityNameInput}
+                                    onChangeText={(text) => {this.setState(
+                                        {weather: {
+                                            ambient: {
+                                                feels_like: this.state.weather.ambient.feels_like,
+                                                humidity: this.state.weather.ambient.humidity,
+                                                temp: this.state.weather.ambient.temp,
+                                                temp_max: this.state.weather.ambient.temp_max,
+                                                temp_min: this.state.weather.ambient.temp_min,
+                                                wind_speed: this.state.weather.ambient.wind_speed,
+                                            },
+                                            dayWeather: {
+                                                description: this.state.weather.dayWeather.description,
+                                                icon: this.state.weather.dayWeather.icon,
+                                                main: this.state.weather.dayWeather.main,
+                                            },
+                                            location: {
+                                                cityNameInput: text,
+                                                cityName: this.state.weather.location.cityName,
+                                            },
                                         },
-                                    },
-                                })}}
-                                autoCapitalize="words"
-                            />
-                        </City>
-                    </Location>
-                    <Options>
-                        <Search onPress={() => {this.refreshWeatherByCityName(this.state.weather.location.cityNameInput)}}>
-                            <Icon name="search" size={40} color="#fff"/>
-                        </Search>
-                        <Refresh onPress={() => {this.refreshLocation()}}>
-                            <Icon name="refresh" size={40} color="#fff"/>
-                        </Refresh>
-                    </Options>
-                </LocationContainer>
+                                    })}}
+                                    autoCapitalize="words"
+                                />
+                            </City>
+                        </Location>
+                        <Options>
+                            <Search onPress={() => {this.refreshWeatherByCityName(this.state.weather.location.cityNameInput)}}>
+                                <Icon name="search" size={40} color="#fff"/>
+                            </Search>
+                            <Refresh onPress={() => {this.refreshLocation()}}>
+                                <Icon name="refresh" size={40} color="#fff"/>
+                            </Refresh>
+                        </Options>
+                    </LocationContainer>
 
-                <WeatherInfo info={this.state} />
+                    <WeatherInfo info={this.state} />
 
-                <Forecast forecast={this.state.forecast} />
+                    <Forecast forecast={this.state.forecast} />
 
-                <TestsContainer>
+                    <TestsContainer>
 
-                    <Title>Testes rápidos</Title>
+                        <Title>Testes rápidos</Title>
 
-                    <FastTest onPress={() => {this.refreshWeatherByCityName('Los Angeles')}}>
-                        <Icon name="location" size={40} color="#fff"/>
-                        <FastTestText>Los Angeles</FastTestText>
-                    </FastTest>
-                    <FastTest onPress={() => {this.refreshWeatherByCityName('Moscou')}}>
-                        <Icon name="location" size={40} color="#fff"/>
-                        <FastTestText>Moscou</FastTestText>
-                    </FastTest>
-                    <FastTest onPress={() => {this.refreshWeatherByCityName('Paris')}}>
-                        <Icon name="location" size={40} color="#fff"/>
-                        <FastTestText>Paris</FastTestText>
-                    </FastTest>
-                    <FastTest onPress={() => {this.refreshWeatherByCityName('São Paulo')}}>
-                        <Icon name="location" size={40} color="#fff"/>
-                        <FastTestText>São Paulo</FastTestText>
-                    </FastTest>
-                    <FastTest onPress={() => {this.refreshWeatherByCityName('Tokyo')}}>
-                        <Icon name="location" size={40} color="#fff"/>
-                        <FastTestText>Tóquio</FastTestText>
-                    </FastTest>
-                    
-                </TestsContainer>
-                </ScrollContainer>
-            </Container>
+                        <FastTest onPress={() => {this.refreshWeatherByCityName('Los Angeles')}}>
+                            <Icon name="location" size={40} color="#fff"/>
+                            <FastTestText>Los Angeles</FastTestText>
+                        </FastTest>
+                        <FastTest onPress={() => {this.refreshWeatherByCityName('Moscou')}}>
+                            <Icon name="location" size={40} color="#fff"/>
+                            <FastTestText>Moscou</FastTestText>
+                        </FastTest>
+                        <FastTest onPress={() => {this.refreshWeatherByCityName('Paris')}}>
+                            <Icon name="location" size={40} color="#fff"/>
+                            <FastTestText>Paris</FastTestText>
+                        </FastTest>
+                        <FastTest onPress={() => {this.refreshWeatherByCityName('São Paulo')}}>
+                            <Icon name="location" size={40} color="#fff"/>
+                            <FastTestText>São Paulo</FastTestText>
+                        </FastTest>
+                        <FastTest onPress={() => {this.refreshWeatherByCityName('Tokyo')}}>
+                            <Icon name="location" size={40} color="#fff"/>
+                            <FastTestText>Tóquio</FastTestText>
+                        </FastTest>
+                        
+                    </TestsContainer>
+                </ContentContainer>
+            </ScrollContainer>
+        </Container>
         );
     }
 }
