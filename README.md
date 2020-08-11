@@ -124,5 +124,5 @@ Feito com :heart:
 </a>
 
 <a href="https://app.rocketseat.com.br/me/gabriel-taborda-farias-1589471319">
-  <img src="https://img.shields.io/badge/%F0%9F%9A%80-Gabriel%20Taborda%20Farias-8257e6?style=for-the-badge&labelColor=121214"/>
+  <img src="https://img.shields.io/badge/%F0%9F%9A%80-rocketseat-8257e6?style=for-the-badge&labelColor=121214"/>
 </a>
