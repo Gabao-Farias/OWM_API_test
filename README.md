@@ -77,6 +77,7 @@ O projeto possui as seguintes dependências.
 "dependencies": {
   "@react-native-community/geolocation": "^2.0.2",
   "axios": "^0.19.2",
+  "date-fns": "^2.15.0",
   "react": "16.13.1",
   "react-native": "0.63.2",
   "react-native-linear-gradient": "^2.5.6",
@@ -88,7 +89,7 @@ O projeto possui as seguintes dependências.
 Instale-as utilizando:
 
 ````
-npm install @react-native-community/geolocation axios react-native-linear-gradient react-native-vector-icons styled-components
+npm install @react-native-community/geolocation axios react-native-linear-gradient react-native-vector-icons styled-components date-fns
 ````
 
 #### Dispositivo
