@@ -219,7 +219,7 @@ export default class App extends Component{
 
                     <TestsContainer>
 
-                        <Title>Testes rápidos</Title>
+                        <Title>Testes Rápidos</Title>
 
                         <FastTest onPress={() => {this.refreshWeatherByCityName('Los Angeles')}}>
                             <Icon name="location" size={40} color="#fff"/>
