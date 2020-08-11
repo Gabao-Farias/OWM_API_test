@@ -35,8 +35,10 @@ Esse é um projeto serve para demonstração e teste da API do OpenWeather.
 
 ### 🖼️ Capturas de tela
 <h1>
- <img height="500" src="src\assets\Screenshot_20200807-192009_OWM_API_test.jpg">
- <img height="500" src="src\assets\Screenshot_20200807-192152_OWM_API_test.jpg">
+ <img height="500" src="src\assets\Screenshot_20200811-005215_OWM_API_test.jpg">
+ <img height="500" src="src\assets\Screenshot_20200811-005222_OWM_API_test.jpg">
+ <img height="500" src="src\assets\Screenshot_20200811-005250_OWM_API_test.jpg">
+ <img height="500" src="src\assets\Screenshot_20200811-005304_OWM_API_test.jpg">
 </h1>
 
 ### 🥏 Funcionalidades
