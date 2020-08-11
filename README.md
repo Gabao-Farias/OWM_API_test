@@ -49,7 +49,7 @@ Esse é um projeto serve para demonstração e teste da API do OpenWeather.
 <p/>
 
   * Essa imagem provém dessa [URL http](http://openweathermap.org/img/wn/10d@2x.png), porém, por motivos de segurança, IOS só se conecta com requisições https. Veja mais sobre, em https://github.com/facebook/react-native/issues/8520.
-* Consulta de previsão de tempo (🚧 em pesquisa e desenvolvimento...).
+* Consulta de previsão de tempo.
 * Consulta por digitação da cidade.
 
 ### ⚙️ Tecnologias e ferramentas utilizadas
