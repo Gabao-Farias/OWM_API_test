@@ -1,17 +1,25 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-    flex-direction: row;
-    height: 140px;
+    height: 170px;
     border: 2px solid #fff;
     margin-top: 20px;
     border-radius: 20px;
+`;
+
+export const Title = styled.Text`
+    margin: 5px;
+    color: #fff;
+    font-size: 26px;
+    text-align: center;
 `;
 
 export const ScrollView = styled.ScrollView.attrs({
     horizontal: true,
     showsHorizontalScrollIndicator: false,
 })`
+    flex: 1;
+    flex-direction: row;
 `;
 
 export const ForecastCard = styled.View`
