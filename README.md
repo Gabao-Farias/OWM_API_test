@@ -123,6 +123,6 @@ Feito com :heart:
   <img src="https://img.shields.io/badge/-gabrielfariasbass@gmail.com-c14438?style=for-the-badge&labelColor=c14438&logo=gmail&logoColor=white"/>
 </a>
 
-<a href="https://app.rocketseat.com.br/me/gabriel-taborda-farias-1589471319">
-  <img src="https://img.shields.io/badge/%F0%9F%9A%80-rocketseat-8257e6?style=for-the-badge&labelColor=121214"/>
-</a>
+  <a href="https://app.rocketseat.com.br/me/gabriel-taborda-farias-1589471319">
+    <img src="https://img.shields.io/badge/-Gabão-7159C1?style=for-the-badge&labelColor=7159C1&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAALVBMVEVHcExxWsF0XMJzXMJxWcFsUsD///9jRrzY0u6Xh9Gsn9n39fyMecy0qd2bjNJWBT0WAAAABHRSTlMA2Do606wF2QAAAGlJREFUGJVdj1cWwCAIBLEsRU3uf9xobDH8+GZwUYi8i6ucJwrxKE+7D0G9Q4vlYqtmCSjndr4CgCgzlyFgfKfKCVO0LrPKjmiqMxGXkJwNnXskqWG+1oSM+BSwD8f29YLNjvx/OQrn+g99oQSoNmt3PgAAAABJRU5ErkJggg==" />
+  </a>
